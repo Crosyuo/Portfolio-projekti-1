@@ -46,12 +46,7 @@ public class MainMenu : MonoBehaviour
         if (gameController != null)
         {
             gameController.resetPoints();
-            SceneManager.LoadScene(1);
         }
-        else
-        {
-            Debug.Log("Meow");
-        }
-        
+        SceneManager.LoadScene(1);
     }
 }
