@@ -7,14 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     GameController gameController;
 
-    void start()
+    void awake()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     public void PlayGame()
     {
-        if(gameController != null)
+        if (gameController != null)
         {
             gameController.resetPoints();
         }
@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
 
     public void MainMenuEnter()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         if (gameController != null)
         {
             gameController.resetPoints();
@@ -40,12 +41,17 @@ public class MainMenu : MonoBehaviour
 
     public void RestartGame()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        Time.timeScale = 1;
         if (gameController != null)
         {
             gameController.resetPoints();
+            SceneManager.LoadScene(1);
         }
-
-        Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        else
+        {
+            Debug.Log("Meow");
+        }
+        
     }
 }

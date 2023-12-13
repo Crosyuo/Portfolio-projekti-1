@@ -57,5 +57,6 @@ public class GameController : MonoBehaviour
     public void resetPoints()
     {
         points = 0;
+        _pointsText.text = points.ToString();
     }
 }
