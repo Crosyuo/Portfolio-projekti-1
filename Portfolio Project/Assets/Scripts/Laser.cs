@@ -5,7 +5,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     float speed = 20f;
-    int damage = 40;
+    int damage = 100;
     public Rigidbody2D rb;
 
     void Start()
@@ -20,7 +20,14 @@ public class Laser : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
+        if (hitInfo.name != "VictoryLine")
+        {
+            Destroy(gameObject);
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         Destroy(gameObject);
     }
 

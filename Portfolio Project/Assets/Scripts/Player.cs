@@ -5,12 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     float moveSpeed = 15f;
+    public int playerHP = 100;
+    public int lives = 3;
+
+    GameController gameController;
 
     public Rigidbody2D rb;
     public Transform firePoint;
     public GameObject bulletPrefab;
 
     Vector2 movement;
+
+    void Start()
+    {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
 
     void Update()
     {
@@ -29,6 +38,31 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if(GameObject.FindGameObjectsWithTag("PlayerLaser").Length == 0)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        playerHP -= damage;
+
+        if (playerHP <= 0)
+        {
+            lives--;
+            gameController._livesText.text = "Lives: " + lives.ToString();
+
+            if (lives <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+        gameController.gameLost();
     }
 }

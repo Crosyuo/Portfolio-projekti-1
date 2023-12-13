@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Invaders
+  - PlayerLaser
+  - Enemy
+  - test
   layers:
   - Default
   - TransparentFX
